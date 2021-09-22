@@ -1,32 +1,32 @@
 package com.example.demo.io.entity;
 
 import javax.persistence.*;
+import java.sql.Time;
 
 @Entity
-public class Sensor {
+public class ScheduledSenseDataTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    @OneToOne
-    private Silo silo;
-    @OneToOne
+    private Time time;
+    private int sensedValue;
+    @ManyToOne
     private ScheduledSenseData scheduledSenseData;
 
-    public Sensor() {
+    public ScheduledSenseDataTime() {
     }
 
-    public Sensor(String name, Silo silo, ScheduledSenseData scheduledSenseData) {
-        this.name = name;
-        this.silo = silo;
+    public ScheduledSenseDataTime(Time time, int sensedValue, ScheduledSenseData scheduledSenseData) {
+        this.time = time;
+        this.sensedValue = sensedValue;
         this.scheduledSenseData = scheduledSenseData;
     }
 
-    public Sensor(Long id, String name, Silo silo, ScheduledSenseData scheduledSenseData) {
+    public ScheduledSenseDataTime(Long id, Time time, int sensedValue, ScheduledSenseData scheduledSenseData) {
         this.id = id;
-        this.name = name;
-        this.silo = silo;
+        this.time = time;
+        this.sensedValue = sensedValue;
         this.scheduledSenseData = scheduledSenseData;
     }
 
@@ -38,20 +38,20 @@ public class Sensor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Time getTime() {
+        return time;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
-    public Silo getSilo() {
-        return silo;
+    public int getSensedValue() {
+        return sensedValue;
     }
 
-    public void setSilo(Silo silo) {
-        this.silo = silo;
+    public void setSensedValue(int sensedValue) {
+        this.sensedValue = sensedValue;
     }
 
     public ScheduledSenseData getScheduledSenseData() {
@@ -64,10 +64,10 @@ public class Sensor {
 
     @Override
     public String toString() {
-        return "Sensor{" +
+        return "ScheduledSenseDataTime{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", silo=" + silo +
+                ", time=" + time +
+                ", sensedValue=" + sensedValue +
                 ", scheduledSenseData=" + scheduledSenseData +
                 '}';
     }
