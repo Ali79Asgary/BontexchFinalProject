@@ -1,6 +1,7 @@
 package com.example.demo.io.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Silo {
@@ -15,8 +16,8 @@ public class Silo {
     private Store store;
     @OneToOne
     private Sensor sensor;
-    @OneToOne
-    private ChangeStoredAmount changeStoredAmount;
+    @OneToMany
+    private List<ChangeStoredAmount> changeStoredAmount;
 
     public Silo() {
     }
@@ -27,7 +28,7 @@ public class Silo {
             int cerealsAmount,
             Store store,
             Sensor sensor,
-            ChangeStoredAmount changeStoredAmount
+            List<ChangeStoredAmount> changeStoredAmount
     ) {
         this.name = name;
         this.maxCapacity = maxCapacity;
@@ -43,7 +44,7 @@ public class Silo {
                 int cerealsAmount,
                 Store store,
                 Sensor sensor,
-                ChangeStoredAmount changeStoredAmount
+                List<ChangeStoredAmount> changeStoredAmount
     ) {
         this.id = id;
         this.name = name;
@@ -102,11 +103,11 @@ public class Silo {
         this.sensor = sensor;
     }
 
-    public ChangeStoredAmount getChangeStoredAmount() {
+    public List<ChangeStoredAmount> getChangeStoredAmount() {
         return changeStoredAmount;
     }
 
-    public void setChangeStoredAmount(ChangeStoredAmount changeStoredAmount) {
+    public void setChangeStoredAmount(List<ChangeStoredAmount> changeStoredAmount) {
         this.changeStoredAmount = changeStoredAmount;
     }
 

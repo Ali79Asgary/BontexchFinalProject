@@ -1,7 +1,7 @@
 package com.example.demo.io.entity;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.Date;
 
 @Entity
 public class ChangeStoredAmount {
@@ -9,21 +9,21 @@ public class ChangeStoredAmount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Time detectTime;
+    private String detectTime;
     private int changeAmount;
-    @OneToOne
+    @ManyToOne
     private Silo silo;
 
     public ChangeStoredAmount() {
     }
 
-    public ChangeStoredAmount(Time detectTime, int changeAmount, Silo silo) {
+    public ChangeStoredAmount(String detectTime, int changeAmount, Silo silo) {
         this.detectTime = detectTime;
         this.changeAmount = changeAmount;
         this.silo = silo;
     }
 
-    public ChangeStoredAmount(Long id, Time detectTime, int changeAmount, Silo silo) {
+    public ChangeStoredAmount(Long id, String detectTime, int changeAmount, Silo silo) {
         this.id = id;
         this.detectTime = detectTime;
         this.changeAmount = changeAmount;
@@ -38,11 +38,11 @@ public class ChangeStoredAmount {
         this.id = id;
     }
 
-    public Time getDetectTime() {
+    public String getDetectTime() {
         return detectTime;
     }
 
-    public void setDetectTime(Time detectTime) {
+    public void setDetectTime(String detectTime) {
         this.detectTime = detectTime;
     }
 

@@ -34,4 +34,15 @@ public class SensorService {
     public void deleteSensorById(@PathVariable Long id) {
         sensorRepository.deleteById(id);
     }
+
+    public Sensor updateSensor(@RequestBody Sensor newSensor, @PathVariable Long id) {
+        return sensorRepository.findById(id).map(sensor -> {
+            sensor.setName(newSensor.getName());
+            sensor.setScheduledSenseData(newSensor.getScheduledSenseData());
+            sensor.setSilo(newSensor.getSilo());
+            return sensorRepository.save(sensor);
+        }).orElseGet(() -> {
+            return sensorRepository.save(newSensor);
+        });
+    }
 }
